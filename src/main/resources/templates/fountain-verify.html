@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGBUNU MALIK DAVID| Java Backend Developer</title>
+
+    <style>
+        :root {
+            --navy: #0B1F3A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --light-grey: #F3F6FA;
+            --text: #344054;
+            --border: #DCE3EC;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--light-grey);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 20px 7%;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            color: var(--white);
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .brand span,
+        footer span {
+            color: var(--gold);
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 75px 7% 85px;
+        }
+
+        .project-label {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            padding: 7px 17px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 52px);
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 780px;
+            margin: 0 auto;
+            color: #E4EAF2;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 55px 22px;
+        }
+
+        .section-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 5px 22px rgba(11, 31, 58, 0.06);
+        }
+
+        h2 {
+            color: var(--navy);
+            font-size: 26px;
+            margin-bottom: 18px;
+        }
+
+        .section-card p {
+            margin-bottom: 12px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .feature {
+            background: var(--light-grey);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .feature h3,
+        .screenshot-item h3 {
+            color: var(--navy);
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #E8EDF5;
+            color: var(--navy);
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .screenshot-item {
+            min-width: 0;
+        }
+
+        .screenshot-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(11, 31, 58, 0.10);
+        }
+
+        .action-links,
+        .project-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: var(--navy);
+            color: var(--white);
+            border: 2px solid var(--navy);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 1.5;
+            transition: 0.25s ease;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: var(--navy);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #9B7A13;
+        }
+
+        /* Endpoint documentation */
+        .api-intro {
+            background: #E8EDF5;
+            border-radius: 9px;
+            padding: 18px;
+            margin-bottom: 25px;
+        }
+
+        .route-group {
+            margin-top: 28px;
+        }
+
+        .route-group h3 {
+            color: var(--navy);
+            font-size: 19px;
+            margin-bottom: 14px;
+        }
+
+        .route-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 14px;
+            min-width: 0;
+        }
+
+        .route-heading {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .method {
+            display: inline-block;
+            min-width: 60px;
+            text-align: center;
+            padding: 4px 9px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .method-get {
+            color: #176B3A;
+            background: #E2F5E9;
+        }
+
+        .method-post {
+            color: #875900;
+            background: #FFF1C7;
+        }
+
+        .route-path {
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 14px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+            color: var(--navy);
+        }
+
+        .access-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            color: #475467;
+            background: #F0F2F5;
+            padding: 4px 9px;
+            border-radius: 20px;
+            margin-top: 8px;
+        }
+
+        .code-example {
+            display: block;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
+            background: #F5F7FA;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            margin: 14px 0;
+            color: var(--navy);
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 13px;
+        }
+
+        .notice {
+            border-left: 4px solid var(--gold);
+            padding: 15px 18px;
+            background: #FFFAE8;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px 14px 0 0;
+            }
+
+            .hero {
+                padding: 55px 6%;
+            }
+
+            .container {
+                padding: 35px 16px;
+            }
+
+            .section-card {
+                padding: 23px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-links,
+            .project-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .route-card {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="/" class="brand">EGBUNU MALIK DAVID <span>Java Portfolio</span></a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#about">About Me</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="project-label">JAVA PROJECT #2</div>
+    <h1>Fountain Verify</h1>
+    <p>
+        A digital certificate verification system built with Java and Spring Boot
+        to manage certificates, generate QR codes, and help the public verify
+        certificate details online.
+    </p>
+</section>
+
+<main class="container">
+
+    <a href="/#projects" class="back-link">← Back to Featured Projects</a>
+
+    <section class="section-card">
+        <h2>Fountain Verify Project Screenshots</h2>
+        <p>
+            Explore Fountain Verify's certificate verification, secure login,
+            and digital certificate with QR code features.
+        </p>
+
+        <div class="screenshot-gallery">
+            <div class="screenshot-item">
+                <h3>Certificate Verification</h3>
+                <img src="/images/verified.png"
+                     alt="Fountain Verify public certificate verification result">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Login Page</h3>
+                <img src="/images/login.png"
+                     alt="Fountain Verify secure login page">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Certificate with QR Code</h3>
+                <img src="/images/certificate.png"
+                     alt="Fountain Verify digital certificate displaying its QR code">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Project Overview</h2>
+        <p>
+            Fountain Verify is a digital certificate verification platform
+            developed as part of Fountain Information Service (FIS). It helps
+            certificate issuers manage certificate records and makes
+            verification more convenient for employers, institutions, and
+            other people who need to confirm certificate details.
+        </p>
+        <p>
+            Each certificate can have a unique certificate number and a
+            corresponding QR code. Scanning the QR code can open the public
+            verification page, where the certificate's recorded status and
+            details can be checked.
+        </p>
+    </section>
+
+    <section class="section-card">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <h3>Certificate Management</h3>
+                <p>Authorized administrators can create, view, update, and manage certificate records.</p>
+            </div>
+            <div class="feature">
+                <h3>QR Code Generation</h3>
+                <p>Generates QR codes that direct users to a certificate's public verification page.</p>
+            </div>
+            <div class="feature">
+                <h3>Public Verification</h3>
+                <p>Allows visitors to check a certificate using its unique certificate number or verification QR code.</p>
+            </div>
+            <div class="feature">
+                <h3>Authentication and Access Control</h3>
+                <p>Provides user login and role-based protection for administrative certificate-management features.</p>
+            </div>
+            <div class="feature">
+                <h3>Certificate Status</h3>
+                <p>Verification checks certificate status and expiry dates before displaying the result.</p>
+            </div>
+            <div class="feature">
+                <h3>Responsive Web Interface</h3>
+                <p>Uses server-rendered web pages designed to present certificate information across screen sizes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application route documentation -->
+    <section class="section-card" id="api-documentation">
+        <h2>Application Routes &amp; API Documentation</h2>
+
+        <p>
+            Fountain Verify uses Spring MVC controllers to handle certificate
+            verification, user certificate pages, and administrator
+            certificate-management forms.
+        </p>
+
+        <div class="api-intro">
+            <strong>Base URL for local development</strong>
+            <code class="code-example">http://localhost:8080</code>
+            <p>
+                The routes below are based on the application's verified
+                controller mappings. These are primarily HTML-page and form
+                endpoints; they are not represented as JSON REST responses.
+            </p>
+        </div>
+
+        <div class="route-group">
+            <h3>1. Public Verification</h3>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-get">GET</span>
+                    <code class="route-path">/verify</code>
+                </div>
+                <p>
+                    Opens the verification form or checks a certificate when
+                    a certificate number is supplied. The result page can
+                    display VALID, INVALID, BLOCKED, REVOKED, or EXPIRED.
+                </p>
+                <span class="access-label">Public access</span>
+
+                <p><strong>Query parameter:</strong> <code>certificateNumber</code></p>
+                <code class="code-example">GET /verify?certificateNumber=FV-2026-0001</code>
+            </div>
+        </div>
+
+        <div class="route-group">
+            <h3>2. Authenticated User Routes</h3>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-get">GET</span>
+                    <code class="route-path">/my-certificates</code>
+                </div>
+                <p>
+                    Opens the authenticated user's certificate page.
+                    Access is restricted to signed-in users.
+                </p>
+                <span class="access-label">Authentication required</span>
+            </div>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-get">GET</span>
+                    <code class="route-path">/my-qr-codes</code>
+                </div>
+                <p>
+                    Displays QR codes for certificates assigned to the
+                    currently authenticated user.
+                </p>
+                <span class="access-label">Authentication required</span>
+            </div>
+        </div>
+
+        <div class="route-group">
+            <h3>3. Administrator Certificate Management</h3>
+            <p>
+                The following routes are defined in the certificate
+                controller protected by the ADMIN role.
+            </p>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-get">GET</span>
+                    <code class="route-path">/certificates/list</code>
+                </div>
+                <p>Displays the certificate-management list.</p>
+                <span class="access-label">ADMIN only</span>
+            </div>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-get">GET</span>
+                    <code class="route-path">/certificates/create</code>
+                </div>
+                <p>Opens the form for creating a certificate.</p>
+                <span class="access-label">ADMIN only</span>
+            </div>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-post">POST</span>
+                    <code class="route-path">/certificates/create</code>
+                </div>
+                <p>
+                    Submits certificate details, including the certificate
+                    number, recipient, course, issuer, dates, and assigned user.
+                </p>
+                <span class="access-label">ADMIN only</span>
+            </div>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-get">GET</span>
+                    <code class="route-path">/certificates/view/{id}</code>
+                </div>
+                <p>Displays a certificate by its database ID.</p>
+                <span class="access-label">ADMIN only</span>
+            </div>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-get">GET</span>
+                    <code class="route-path">/certificates/edit/{id}</code>
+                </div>
+                <p>Opens the edit form for an existing certificate.</p>
+                <span class="access-label">ADMIN only</span>
+            </div>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-post">POST</span>
+                    <code class="route-path">/certificates/edit/{id}</code>
+                </div>
+                <p>
+                    Submits changes to certificate details, status, dates,
+                    and the assigned user.
+                </p>
+                <span class="access-label">ADMIN only</span>
+            </div>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-post">POST</span>
+                    <code class="route-path">/certificates/regenerate-qr/{id}</code>
+                </div>
+                <p>Regenerates the QR code for an existing certificate.</p>
+                <span class="access-label">ADMIN only</span>
+            </div>
+
+            <div class="route-card">
+                <div class="route-heading">
+                    <span class="method method-post">POST</span>
+                    <code class="route-path">/certificates/delete/{id}</code>
+                </div>
+                <p>Submits a request to delete an existing certificate.</p>
+                <span class="access-label">ADMIN only</span>
+            </div>
+        </div>
+
+
+		<div class="route-group">
+		    <h3>4. QR Code Image Generation</h3>
+
+		    <div class="route-card">
+		        <div class="route-heading">
+		            <span class="method method-get">GET</span>
+		            <code class="route-path">/qrcode?text=...</code>
+		        </div>
+
+		        <p>
+		            Generates a QR code from the supplied text and returns
+		            it as a PNG image. The controller uses ZXing and generates
+		            a 300 × 300 image.
+		        </p>
+
+		        <span class="access-label">
+		            Access depends on Spring Security configuration
+		        </span>
+
+		        <p>
+		            <strong>Query parameter:</strong>
+		            <code>text</code>
+		        </p>
+
+		        <code class="code-example">GET /qrcode?text=Hello</code>
+
+		        <p>
+		            <strong>Response content type:</strong>
+		            <code>image/png</code>
+		        </p>
+		    </div>
+		</div>
+
+		<div class="notice">
+		    <strong>Implementation note:</strong>
+		    These mappings document the verified Spring MVC controller
+		    routes. Most application routes render HTML pages or process
+		    form submissions, while <code>/qrcode</code> returns a PNG image.
+		    A separate JSON REST API would need its own API controller and
+		    JSON request/response contracts.
+		</div>
+
+    </section>
+
+    <section class="section-card">
+        <h2>Technologies Used</h2>
+        <p>The project demonstrates the use of Java backend technologies and supporting tools:</p>
+        <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Spring MVC</span>
+            <span class="tag">Spring Security</span>
+            <span class="tag">Thymeleaf</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">QR Code Generation</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>What I Practised</h2>
+        <p>
+            Building Fountain Verify gave me practical experience with Spring
+            Boot application structure, database-backed certificate records,
+            user authentication, role-based authorization, dynamic web pages,
+            QR code generation, and public verification routes.
+        </p>
+        <p>
+            The project also helped me practise connecting different parts
+            of a web application into a working system, from administrative
+            certificate management to public-facing verification.
+        </p>
+    </section>
+
+    <section class="section-card">
+        <h2>Explore Fountain Verify</h2>
+        <p>
+            The source code and public application links will be connected
+            here when they are ready.
+        </p>
+        <div class="action-links">
+            <a href="#" class="btn" target="_blank" rel="noopener noreferrer">
+                GitHub Repository ↗
+            </a>
+            <a href="#" class="btn btn-outline">
+                Live Project ↗
+            </a>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Explore My Java Projects</h2>
+        <p>Explore the other projects included in this portfolio.</p>
+        <div class="project-buttons">
+            <a class="btn" href="/projects/jobconnect">View JobConnect →</a>
+            <a class="btn" href="/projects/fis-java-portfolio">View FIS Java Portfolio →</a>
+            <a class="btn" href="/">Back to Portfolio Home →</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 <span>FIS Java Portfolio</span>. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

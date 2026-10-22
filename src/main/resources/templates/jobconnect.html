@@ -1,0 +1,966 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGBUNU MALIK DAVID| Java Backend Developer</title>
+
+    <style>
+        :root {
+            --navy: #0B1F3A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --light-grey: #F3F6FA;
+            --text: #344054;
+            --border: #DCE3EC;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--light-grey);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 20px 7%;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            color: var(--white);
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .brand span {
+            color: var(--gold);
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 75px 7% 85px;
+        }
+
+        .project-label {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            padding: 7px 17px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 52px);
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #E4EAF2;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 55px 22px;
+        }
+
+        .section-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 5px 22px rgba(11, 31, 58, 0.06);
+        }
+
+        h2 {
+            color: var(--navy);
+            font-size: 26px;
+            margin-bottom: 18px;
+        }
+
+        .section-card p {
+            margin-bottom: 12px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .feature {
+            background: var(--light-grey);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .feature h3 {
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #E8EDF5;
+            color: var(--navy);
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .action-links,
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: var(--navy);
+            color: var(--white);
+            border: 2px solid var(--navy);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 1.5;
+            transition: 0.25s ease;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: var(--navy);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #9B7A13;
+        }
+
+        /* REST API documentation */
+        .api-intro {
+            margin-bottom: 22px;
+        }
+
+        .api-note {
+            background: #FFF9E8;
+            border-left: 4px solid var(--gold);
+            padding: 16px 18px;
+            border-radius: 7px;
+            margin: 18px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .api-group {
+            margin-top: 30px;
+        }
+
+        .api-group h3 {
+            color: var(--navy);
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .api-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            margin-top: 12px;
+        }
+
+        .api-table {
+            width: 100%;
+            min-width: 690px;
+            border-collapse: collapse;
+            background: var(--white);
+            font-size: 13px;
+        }
+
+        .api-table th {
+            background: var(--navy);
+            color: var(--white);
+            text-align: left;
+            padding: 13px 12px;
+        }
+
+        .api-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .api-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .api-table tbody tr:nth-child(even) {
+            background: #F8FAFC;
+        }
+
+        .method {
+            display: inline-block;
+            min-width: 57px;
+            text-align: center;
+            padding: 4px 7px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .method-get {
+            background: #DDF5E5;
+            color: #176B37;
+        }
+
+        .method-post {
+            background: #DCEBFF;
+            color: #174EA6;
+        }
+
+        .method-put {
+            background: #FFF0C2;
+            color: #785600;
+        }
+
+        .method-delete {
+            background: #FFE0E0;
+            color: #A32121;
+        }
+
+        .endpoint {
+            color: var(--navy);
+            font-family: Consolas, "Courier New", monospace;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .access-label {
+            font-weight: bold;
+            color: var(--navy);
+        }
+
+        .code-example {
+            margin: 12px 0 20px;
+            padding: 18px;
+            background: #101B2B;
+            color: #E8EEF7;
+            border-radius: 9px;
+            overflow-x: auto;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.65;
+            white-space: pre;
+        }
+
+        .api-subheading {
+            color: var(--navy);
+            font-size: 17px;
+            margin: 22px 0 8px;
+        }
+
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .screenshot-item {
+            min-width: 0;
+        }
+
+        .screenshot-item h3 {
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        .screenshot-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(11, 31, 58, 0.10);
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 14px;
+        }
+
+        footer span {
+            color: var(--gold);
+        }
+
+        @media (max-width: 650px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px 14px 0 0;
+            }
+
+            .hero {
+                padding: 55px 6%;
+            }
+
+            .container {
+                padding: 35px 16px;
+            }
+
+            .section-card {
+                padding: 23px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-links,
+            .buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .api-table {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="/" class="brand">EGBUNU MALIK DAVID <span>Java Portfolio</span></a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#about">About Me</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="project-label">JAVA PROJECT #1</div>
+    <h1>JobConnect</h1>
+    <p>
+        A Java backend project designed to connect job seekers and employers,
+        with user authentication, role-based access, and REST API functionality.
+    </p>
+</section>
+
+<main class="container">
+
+    <a href="/#projects" class="back-link">← Back to Featured Projects</a>
+
+    <section class="section-card">
+        <h2>Project Overview</h2>
+        <p>
+            JobConnect is a job platform project built to demonstrate practical
+            Java backend development. It provides a foundation for connecting
+            people looking for employment with employers seeking candidates.
+        </p>
+        <p>
+            The project helped me practise building REST endpoints, managing
+            users and roles, connecting an application to a database, and
+            implementing authentication for protected resources.
+        </p>
+    </section>
+
+    <section class="section-card">
+        <h2>Key Features</h2>
+
+        <div class="feature-grid">
+            <div class="feature">
+                <h3>User Authentication</h3>
+                <p>
+                    Supports user authentication and token-based access
+                    for protected API resources.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Role-Based Access</h3>
+                <p>
+                    Separates job seeker, employer, and administrator
+                    roles to support role-specific functionality.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>REST API</h3>
+                <p>
+                    Provides backend API endpoints for job listings,
+                    applications, user accounts, and administration.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Database Integration</h3>
+                <p>
+                    Uses MySQL to support persistent application data.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Technologies Used</h2>
+        <p>
+            The project uses the following technologies and development tools:
+        </p>
+
+        <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">REST API</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Spring Security</span>
+            <span class="tag">JWT</span>
+        </div>
+    </section>
+
+    <!-- REST API DOCUMENTATION -->
+    <section class="section-card" id="api-documentation">
+        <h2>REST API Documentation</h2>
+
+        <p class="api-intro">
+            JobConnect exposes REST endpoints for authentication, user
+            management, job listings, applications, and administration.
+            The reference below documents the application's configured routes
+            and access requirements.
+        </p>
+
+        <div class="api-note">
+            <strong>Local development:</strong>
+            The base URL is commonly
+            <code>http://localhost:8080</code> when JobConnect is running on
+            port 8080. Use the actual port configured for your JobConnect
+            instance. This documentation does not mean the API is publicly deployed.
+        </div>
+
+        <div class="api-note">
+            <strong>Authentication:</strong>
+            For protected endpoints, send the JWT returned by login in the
+            HTTP request header:
+            <br>
+            <code>Authorization: Bearer YOUR_JWT_TOKEN</code>
+            <br>
+            Never publish a real JWT, password, or private account information.
+        </div>
+
+        <div class="api-group">
+            <h3>1. Authentication</h3>
+            <div class="api-table-wrap">
+                <table class="api-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th>
+                        <th>Access</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code class="endpoint">/auth/login</code></td>
+                        <td>Public</td>
+                        <td>Authenticates a user and returns a JWT with username and role information.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="api-subheading">Login request</h4>
+            <pre class="code-example">{
+  "username": "jobseeker1",
+  "password": "your-password"
+}</pre>
+
+            <h4 class="api-subheading">Successful login response</h4>
+            <pre class="code-example">{
+  "message": "Login successful",
+  "username": "jobseeker1",
+  "token": "your-jwt-token",
+  "role": "JOB_SEEKER"
+}</pre>
+            <p>
+                The JSON field names above are confirmed by the
+                <code>LoginRequest</code> and <code>LoginResponse</code> DTOs.
+                The values are illustrative.
+            </p>
+        </div>
+
+        <div class="api-group">
+            <h3>2. User Accounts and Profiles</h3>
+            <div class="api-table-wrap">
+                <table class="api-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th>
+                        <th>Access</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code class="endpoint">/users/register</code></td>
+                        <td>Public</td>
+                        <td>Registers a job seeker.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code class="endpoint">/users/register-employer</code></td>
+                        <td>Public</td>
+                        <td>Registers an employer.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/users/me</code></td>
+                        <td>Authenticated</td>
+                        <td>Returns the signed-in user's profile.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-put">PUT</span></td>
+                        <td><code class="endpoint">/users/me</code></td>
+                        <td>Authenticated</td>
+                        <td>Updates the signed-in user's profile fields.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code class="endpoint">/users/change-password</code></td>
+                        <td>Authenticated</td>
+                        <td>Changes the signed-in user's password after validation.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/users</code></td>
+                        <td>Admin</td>
+                        <td>Lists users.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/users/{id}</code></td>
+                        <td>Admin</td>
+                        <td>Retrieves a user by ID.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code class="endpoint">/users</code></td>
+                        <td>Admin</td>
+                        <td>Creates a user account.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-put">PUT</span></td>
+                        <td><code class="endpoint">/users/{id}</code></td>
+                        <td>Admin</td>
+                        <td>Updates an account.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-delete">DELETE</span></td>
+                        <td><code class="endpoint">/users/{id}</code></td>
+                        <td>Admin</td>
+                        <td>Deletes a user account.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="api-subheading">User response example</h4>
+            <pre class="code-example">{
+  "id": 1,
+  "fullName": "Jane Doe",
+  "username": "janedoe",
+  "email": "jane@example.com",
+  "phone": "08012345678",
+  "role": "JOB_SEEKER"
+}</pre>
+            <p>
+                This example reflects the fields in the
+                <code>UserResponse</code> DTO. It does not expose a password.
+            </p>
+        </div>
+
+        <div class="api-group">
+            <h3>3. Job Listings</h3>
+            <div class="api-table-wrap">
+                <table class="api-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th>
+                        <th>Access</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/jobs</code></td>
+                        <td>Public</td>
+                        <td>Lists available job records.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/jobs/{id}</code></td>
+                        <td>Public</td>
+                        <td>Retrieves a job by ID.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/jobs/my</code></td>
+                        <td>Employer</td>
+                        <td>Lists jobs posted by the signed-in employer.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code class="endpoint">/jobs</code></td>
+                        <td>Employer</td>
+                        <td>Creates a job listing for the signed-in employer.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-put">PUT</span></td>
+                        <td><code class="endpoint">/jobs/{id}</code></td>
+                        <td>Employer and owner</td>
+                        <td>Updates a job belonging to the signed-in employer.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-delete">DELETE</span></td>
+                        <td><code class="endpoint">/jobs/{id}</code></td>
+                        <td>Employer and owner</td>
+                        <td>Deletes a job belonging to the signed-in employer.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="api-group">
+            <h3>4. Job Applications</h3>
+            <div class="api-table-wrap">
+                <table class="api-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th>
+                        <th>Access</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code class="endpoint">/applications</code></td>
+                        <td>Job seeker</td>
+                        <td>Submits an application for a job.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/applications/my</code></td>
+                        <td>Job seeker</td>
+                        <td>Lists applications submitted by the signed-in job seeker.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/applications</code></td>
+                        <td>Employer or admin</td>
+                        <td>Returns applications associated with jobs matching the signed-in username in the controller.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/applications/{id}</code></td>
+                        <td>Authenticated owner</td>
+                        <td>Retrieves an application after an ownership check.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-put">PUT</span></td>
+                        <td><code class="endpoint">/applications/{id}</code></td>
+                        <td>Authenticated owner</td>
+                        <td>Updates an application while its status is Pending.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-delete">DELETE</span></td>
+                        <td><code class="endpoint">/applications/{id}/withdraw</code></td>
+                        <td>Authenticated owner</td>
+                        <td>Withdraws a Pending application.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-put">PUT</span></td>
+                        <td><code class="endpoint">/applications/{id}/accept</code></td>
+                        <td>Employer or admin</td>
+                        <td>Accepts a Pending application, subject to the job ownership check.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-put">PUT</span></td>
+                        <td><code class="endpoint">/applications/{id}/reject</code></td>
+                        <td>Employer or admin</td>
+                        <td>Rejects a Pending application, subject to the job ownership check.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="api-group">
+            <h3>5. Administration</h3>
+            <div class="api-table-wrap">
+                <table class="api-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th>
+                        <th>Access</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/admin/statistics</code></td>
+                        <td>Admin</td>
+                        <td>Returns platform statistics.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/admin/users</code></td>
+                        <td>Admin</td>
+                        <td>Lists user information.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-put">PUT</span></td>
+                        <td><code class="endpoint">/admin/users/{id}/role</code></td>
+                        <td>Admin</td>
+                        <td>Updates an eligible user's role.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/admin/jobs</code></td>
+                        <td>Admin</td>
+                        <td>Lists all jobs.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/admin/jobs/{id}</code></td>
+                        <td>Admin</td>
+                        <td>Retrieves a job by ID.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-delete">DELETE</span></td>
+                        <td><code class="endpoint">/admin/jobs/{id}</code></td>
+                        <td>Admin</td>
+                        <td>Deletes a job.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/admin/applications</code></td>
+                        <td>Admin</td>
+                        <td>Lists all applications.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code class="endpoint">/admin/applications/{id}</code></td>
+                        <td>Admin</td>
+                        <td>Retrieves an application by ID.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-delete">DELETE</span></td>
+                        <td><code class="endpoint">/admin/applications/{id}</code></td>
+                        <td>Admin</td>
+                        <td>Deletes an application.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="api-note">
+            <strong>Implementation note:</strong>
+            Endpoints that change or delete records may perform additional
+            ownership, role, or application-status checks inside their
+            controllers. A route being listed here does not bypass those checks.
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>What I Practised</h2>
+        <p>
+            Through JobConnect, I developed practical experience with backend
+            application structure, REST API development, user authentication,
+            authorization, database integration, and testing API endpoints.
+        </p>
+        <p>
+            This project forms part of my ongoing portfolio as I work toward
+            a Junior Java Backend Developer role.
+        </p>
+    </section>
+
+    <section class="section-card">
+        <h2>JobConnect Project Screenshots</h2>
+        <p>
+            Explore the JobConnect application interface, including the
+            homepage and authentication pages for job seekers and employers.
+        </p>
+
+        <div class="screenshot-gallery">
+            <div class="screenshot-item">
+                <h3>JobConnect Homepage</h3>
+                <img src="/images/indexnm.png"
+                     alt="JobConnect homepage showing job seeker and employer options">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Job Seeker Authentication</h3>
+                <img src="/images/job_seeker.png"
+                     alt="JobConnect job seeker login and registration page">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Employer Dashboard</h3>
+                <img src="/images/employernew.png"
+                     alt="JobConnect employer login and registration page">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Explore JobConnect</h2>
+        <p>
+            The source code and live application links will be added here
+            when they are ready.
+        </p>
+
+        <div class="action-links">
+            <a href="https://github.com/davidmalik2019/jobconnect"
+               class="btn"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub Repository ↗
+            </a>
+
+            <a href="#"
+               class="btn btn-outline">
+                Live Project ↗
+            </a>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Explore My Java Projects</h2>
+        <p>Explore the other projects included in this portfolio.</p>
+
+        <div class="buttons">
+            <a class="btn" href="/projects/fountain-verify">
+                View Fountain Verify →
+            </a>
+            <a class="btn" href="/projects/fis-java-portfolio">
+                View FIS Java Portfolio →
+            </a>
+            <a class="btn" href="/">
+                Back to Portfolio Home →
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 <span>FIS Java Portfolio</span>. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,590 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EGBUNU MALIK DAVID| Java Backend Developer</title>
+
+    <style>
+        :root {
+            --navy: #0B1F3A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --light-grey: #F3F6FA;
+            --text: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--white);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 18px 7%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.35rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 95px 7% 100px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #D5DFEB;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px 8px 5px 0;
+            transition: 0.2s;
+        }
+
+        .button-gold {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .button-outline {
+            border: 1px solid var(--white);
+            color: var(--white);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 75px 7%;
+            scroll-margin-top: 20px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .projects {
+            background: var(--light-grey);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #E2E8F0;
+            border-top: 4px solid var(--gold);
+            box-shadow: 0 8px 24px rgba(11, 31, 58, 0.06);
+        }
+
+        .project-number {
+            color: #8A6A00;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-card h3 {
+            color: var(--navy);
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .project-card p {
+            margin-bottom: 16px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0;
+        }
+
+        .tag {
+            background: #E9EEF5;
+            color: var(--navy);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+        }
+
+        .about {
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 760px;
+            margin: 0 auto 18px;
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 28px 7%;
+        }
+
+        footer span {
+            color: var(--gold);
+        }
+
+        @media (max-width: 700px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            nav {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            nav ul {
+                gap: 12px 18px;
+            }
+
+            .hero {
+                padding: 65px 5%;
+            }
+
+            section {
+                padding: 55px 5%;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                padding: 24px;
+            }
+        }
+
+		/* Project action buttons */
+		.project-links {
+		    display: flex;
+		    flex-wrap: wrap;
+		    gap: 12px;
+		    margin-top: 24px;
+		}
+
+		.project-btn {
+		    display: inline-flex;
+		    align-items: center;
+		    justify-content: center;
+		    padding: 12px 16px;
+		    background-color: #0B1F3A;
+		    color: #FFFFFF;
+		    text-decoration: none;
+		    font-size: 14px;
+		    font-weight: 600;
+		    border: 2px solid #0B1F3A;
+		    border-radius: 8px;
+		    transition: background-color 0.25s ease,
+		                color 0.25s ease,
+		                transform 0.25s ease;
+		}
+
+		.project-btn:hover {
+		    background-color: #D4AF37;
+		    border-color: #D4AF37;
+		    color: #0B1F3A;
+		    transform: translateY(-2px);
+		}
+
+		.project-btn-outline {
+		    background-color: #FFFFFF;
+		    color: #0B1F3A;
+		    border-color: #D4AF37;
+		}
+
+		.project-btn-outline:hover {
+		    background-color: #D4AF37;
+		    color: #0B1F3A;
+		}
+
+		.project-btn-live {
+		    background-color: #D4AF37;
+		    color: #0B1F3A;
+		    border-color: #D4AF37;
+		}
+
+		.project-btn-live:hover {
+		    background-color: #0B1F3A;
+		    color: #FFFFFF;
+		    border-color: #0B1F3A;
+		}
+
+		@media (max-width: 600px) {
+		    .project-links {
+		        flex-direction: column;
+		    }
+
+		    .project-btn {
+		        width: 100%;
+		        box-sizing: border-box;
+		    }
+		}
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">EGBUNU MALIK DAVID <span>Java Portfolio</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="eyebrow">JAVA BACKEND DEVELOPER</div>
+
+            <h1>Building Practical Solutions with Java.</h1>
+
+            <p>
+				Welcome to my professional portfolio. I am an aspiring Junior Java Backend Developer building practical applications using Java, Spring Boot, REST APIs, and MySQL.
+
+				Explore my three Java projects: **JobConnect (Project #1)**, a job application platform; **Fountain Verify (Project #2)**, a certificate verification system; and **Egbunu Malik David — Java Portfolio (Project #3)**, my professional portfolio showcasing my projects, technical skills, and development journey.
+
+				These projects demonstrate my practical experience, commitment to continuous learning, and passion for building useful software solutions.
+            </p>
+
+            <a href="#projects" class="button button-gold">
+                Explore My Projects
+            </a>
+
+            <a href="#contact" class="button button-outline">
+                Contact Me
+            </a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-heading">
+            <h2>About Me</h2>
+            <p>My journey into Java backend development.</p>
+        </div>
+
+        <p>
+            I am developing my skills in Java backend development by building
+            practical web applications with Spring Boot. My portfolio showcases
+            my work, problem-solving process, and commitment to continuous learning.
+        </p>
+
+        <p>
+            My goal is to contribute to a development team as a Junior Java
+            Backend Developer and continue growing through real-world projects.
+        </p>
+    </section>
+
+
+	<section class="projects" id="projects">
+	    <div class="section-heading">
+	        <h2>Featured Projects</h2>
+	        <p>
+	            Practical applications demonstrating my Java development skills.
+	        </p>
+	    </div>
+
+	    <div class="project-grid">
+
+	        <!-- Java Project #1: JobConnect -->
+	        <article class="project-card">
+	            <div class="project-number">Java Project #1</div>
+
+	            <h3>JobConnect</h3>
+
+	            <p>
+	                A job platform designed to connect job seekers and employers,
+	                featuring user authentication and role-based access.
+	            </p>
+
+	            <div class="tags">
+	                <span class="tag">Java</span>
+	                <span class="tag">Spring Boot</span>
+	                <span class="tag">REST API</span>
+	                <span class="tag">MySQL</span>
+	                <span class="tag">JWT</span>
+	            </div>
+
+	            <p>
+	                <strong>Focus:</strong> Backend development, authentication,
+	                and role-based access control.
+	            </p>
+
+	            <div class="project-links">
+	                <a href="#"
+	                   class="project-btn"
+	                   target="_blank"
+	                   rel="noopener noreferrer">
+	                    GitHub Repository ↗
+	                </a>
+
+	                <a href="/projects/jobconnect"
+	                   class="project-btn project-btn-outline">
+	                    Project Details →
+	                </a>
+
+	                <a href="#"
+	                   class="project-btn project-btn-live">
+	                    Live Project ↗
+	                </a>
+	            </div>
+	        </article>
+
+	        <!-- Java Project #2: Fountain Verify -->
+	        <article class="project-card">
+	            <div class="project-number">Java Project #2</div>
+
+	            <h3>Fountain Verify</h3>
+
+	            <p>
+	                A digital certificate verification system for managing
+	                certificates, generating QR codes, and allowing the public
+	                to verify certificate details online.
+	            </p>
+
+	            <div class="tags">
+	                <span class="tag">Java</span>
+	                <span class="tag">Spring Boot</span>
+	                <span class="tag">Thymeleaf</span>
+	                <span class="tag">MySQL</span>
+	                <span class="tag">QR Codes</span>
+	            </div>
+
+	            <p>
+	                <strong>Focus:</strong> Certificate management, secure
+	                access, QR code generation, and public verification.
+	            </p>
+
+	            <div class="project-links">
+	                <a href="#"
+	                   class="project-btn"
+	                   target="_blank"
+	                   rel="noopener noreferrer">
+	                    GitHub Repository ↗
+	                </a>
+
+	                <a href="/projects/fountain-verify"
+	                   class="project-btn project-btn-outline">
+	                    Project Details →
+	                </a>
+
+	                <a href="#"
+	                   class="project-btn project-btn-live">
+	                    Live Project ↗
+	                </a>
+	            </div>
+	        </article>
+
+			<!-- Java Project #3: FIS Java Portfolio -->
+			<article class="project-card">
+			    <div class="project-number">Java Project #3</div>
+
+			    <h3>FIS Java Portfolio</h3>
+
+			    <p>
+			        A professional developer portfolio built with Java and
+			        Spring Boot to showcase my software projects, technical
+			        skills, and development journey to recruiters.
+			    </p>
+
+			    <div class="tags">
+			        <span class="tag">Java</span>
+			        <span class="tag">Spring Boot</span>
+			        <span class="tag">Thymeleaf</span>
+			        <span class="tag">HTML</span>
+			        <span class="tag">CSS</span>
+			        <span class="tag">Responsive Design</span>
+			    </div>
+
+			    <p>
+			        <strong>Focus:</strong> Spring MVC, server-rendered web
+			        pages, responsive design, and professional project presentation.
+			    </p>
+
+			    <div class="project-links">
+			        <a href="#"
+			           class="project-btn"
+			           target="_blank"
+			           rel="noopener noreferrer">
+			            GitHub Repository ↗
+			        </a>
+
+			        <a href="/projects/fis-java-portfolio"
+			           class="project-btn project-btn-outline">
+			            Project Details →
+			        </a>
+
+			        <a href="#"
+			           class="project-btn project-btn-live">
+			            Live Project ↗
+			        </a>
+			    </div>
+			</article>
+
+	    </div>
+	</section>
+
+
+    <section id="skills">
+        <div class="section-heading">
+            <h2>Technical Skills</h2>
+            <p>Technologies used in my projects and continued learning.</p>
+        </div>
+
+        <div class="project-grid">
+            <article class="project-card">
+                <h3>Backend Development</h3>
+                <div class="tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">REST APIs</span>
+                    <span class="tag">Spring Security</span>
+                    <span class="tag">JWT</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <h3>Web & Database</h3>
+                <div class="tags">
+                    <span class="tag">MySQL</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">Thymeleaf</span>
+                    <span class="tag">Git & GitHub</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="about" id="contact">
+        <div class="section-heading">
+            <h2>Contact Me</h2>
+            <p>
+                I welcome opportunities to learn, collaborate, and contribute
+                to Java backend development projects.
+            </p>
+        </div>
+
+        <p>
+            Contact details, LinkedIn, GitHub, and my CV download will be
+            added in a later step.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 <span>FIS Java Portfolio</span>. Built with Java and Spring Boot.</p>
+</footer>
+
+</body>
+</html>

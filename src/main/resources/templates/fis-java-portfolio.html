@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGBUNU MALIK DAVID| Java Backend Developer</title>
+    <style>
+        :root {
+            --navy: #0B1F3A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --light-grey: #F3F6FA;
+            --text: #344054;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--light-grey);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 20px 7%;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            color: var(--white);
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .brand span {
+            color: var(--gold);
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 75px 7% 85px;
+        }
+
+        .project-label {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            padding: 7px 17px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 52px);
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 780px;
+            margin: 0 auto;
+            color: #E4EAF2;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 55px 22px;
+        }
+
+        .section-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 5px 22px rgba(11, 31, 58, 0.06);
+        }
+
+        h2 {
+            color: var(--navy);
+            font-size: 26px;
+            margin-bottom: 18px;
+        }
+
+        .section-card p {
+            margin-bottom: 12px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .feature {
+            background: var(--light-grey);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .feature h3 {
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #E8EDF5;
+            color: var(--navy);
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .action-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: var(--navy);
+            color: var(--white);
+            border: 2px solid var(--navy);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 1.5;
+            transition: 0.25s ease;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: var(--navy);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #9B7A13;
+        }
+
+        /* Portfolio screenshot gallery */
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .screenshot-item {
+            min-width: 0;
+            padding: 16px;
+            background: var(--light-grey);
+            border-radius: 10px;
+            border: 1px solid #DCE3EC;
+        }
+
+        .screenshot-item h3 {
+            color: var(--navy);
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .screenshot-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #DCE3EC;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(11, 31, 58, 0.10);
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 14px;
+        }
+
+        footer span {
+            color: var(--gold);
+        }
+
+        @media (max-width: 650px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px 14px 0 0;
+            }
+
+            .hero {
+                padding: 55px 6%;
+            }
+
+            .container {
+                padding: 35px 16px;
+            }
+
+            .section-card {
+                padding: 23px;
+            }
+
+            .feature-grid,
+            .screenshot-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .action-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="/" class="brand">EGBUNU MALIK DAVID  <span>Java Portfolio</span></a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#about">About Me</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="project-label">JAVA PROJECT #3</div>
+
+    <h1>FIS Java Portfolio</h1>
+
+    <p>
+        A professional developer portfolio built with Java and Spring Boot
+        to present my projects, technical skills, and development journey
+        to recruiters and potential employers.
+    </p>
+</section>
+
+<main class="container">
+
+    <a href="/#projects" class="back-link">
+        ← Back to Featured Projects
+    </a>
+
+    <section class="section-card">
+        <h2>Project Overview</h2>
+
+        <p>
+            FIS Java Portfolio is a web application developed to showcase my
+            Java backend development work in one professional online portfolio.
+            It provides a central place for recruiters and employers to learn
+            about my projects, the technologies I use, and the skills I am
+            developing.
+        </p>
+
+        <p>
+            The website includes a homepage and dedicated project details pages
+            for JobConnect, Fountain Verify, and this portfolio application.
+            It is being developed with a focus on clear navigation,
+            professional presentation, and responsive design.
+        </p>
+    </section>
+
+    <section class="section-card">
+        <h2>Key Features</h2>
+
+        <div class="feature-grid">
+            <div class="feature">
+                <h3>Project Showcase</h3>
+                <p>
+                    Presents my Java projects with descriptions, technologies,
+                    and dedicated details pages.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Spring MVC Routing</h3>
+                <p>
+                    Uses Spring Boot controllers to map web addresses
+                    to the appropriate pages.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Thymeleaf Templates</h3>
+                <p>
+                    Uses server-rendered HTML templates to organize
+                    and deliver the website's pages.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Responsive Design</h3>
+                <p>
+                    Uses CSS layouts and media queries to adapt content
+                    to desktop, tablet, and mobile screens.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Professional Presentation</h3>
+                <p>
+                    Uses a consistent navy-blue, white, and gold visual
+                    identity across the portfolio.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Recruiter-Focused Layout</h3>
+                <p>
+                    Organizes project information so visitors can quickly
+                    understand my work and technical interests.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Technologies Used</h2>
+
+        <p>
+            The portfolio is being built with the following technologies:
+        </p>
+
+        <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Spring MVC</span>
+            <span class="tag">Thymeleaf</span>
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">Responsive Design</span>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>What I Practised</h2>
+
+        <p>
+            Building this website has helped me practise creating Spring Boot
+            controllers, mapping URLs, organizing Thymeleaf templates,
+            structuring HTML pages, applying responsive CSS, and connecting
+            navigation links across multiple pages.
+        </p>
+
+        <p>
+            It also demonstrates my ability to document and present software
+            projects in a clear, recruiter-friendly format.
+        </p>
+    </section>
+
+    <!-- FIS Java Portfolio screenshots -->
+    <section class="section-card">
+        <h2>FIS Java Portfolio Screenshots</h2>
+
+        <p>
+            Explore my portfolio homepage, project details page,
+            and JobConnect project showcase.
+        </p>
+
+        <div class="screenshot-gallery">
+            <div class="screenshot-item">
+                <h3>Portfolio Homepage</h3>
+                <img src="/images/indexportnew.png"
+                     alt="FIS Java Portfolio homepage showcasing Java projects">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Portfolio Project Details</h3>
+                <img src="/images/fis-java-portfolionew.png"
+                     alt="FIS Java Portfolio project details page">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>JobConnect Project Showcase</h3>
+                <img src="/images/projects_jobconnectnew.png"
+                     alt="JobConnect project details page in FIS Java Portfolio">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Explore My Java Projects</h2>
+
+        <p>
+            Explore the other projects included in this portfolio.
+        </p>
+
+        <div class="action-links">
+            <a href="/projects/jobconnect" class="btn">
+                View JobConnect →
+            </a>
+
+            <a href="/projects/fountain-verify" class="btn btn-outline">
+                View Fountain Verify →
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 <span>FIS Java Portfolio</span>. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
